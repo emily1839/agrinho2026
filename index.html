@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Forte Sustentável</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8f0;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #27ae60;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        .alerta {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .sucesso {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Agro Forte: Futuro Sustentável</h1>
+        <p>Equilíbrio entre produção e meio ambiente</p>
+    </header>
+
+    <main>
+        <h2>Monitoramento da Plantação</h2>
+        <p>Verifique se sua plantação está dentro dos limites sustentáveis:</p>
+        <button onclick="verificarSustentabilidade()">Verificar Sustentabilidade</button>
+
+        <p id="resultado"></p>
+    </main>
+
+    <script>
+        function verificarSustentabilidade() {
+            // Exemplo de dados
+            let aguaUsada = 5200;
+            let fertilizanteUsado = 900;
+            let limiteAgua = 5000;
+            let limiteFertilizante = 1000;
+
+            let resultado = '';
+
+            if (aguaUsada > limiteAgua) {
+                resultado += `⚠️ Uso excessivo de água: ${aguaUsada}L (limite ${limiteAgua}L)<br>`;
+            }
+
+            if (fertilizanteUsado > limiteFertilizante) {
+                resultado += `⚠️ Uso excessivo de fertilizante: ${fertilizanteUsado}kg (limite ${limiteFertilizante}kg)<br>`;
+            }
+
+            if (!resultado) {
+                resultado = '✅ Plantação dentro dos limites sustentáveis!';
+                document.getElementById('resultado').className = 'sucesso';
+            } else {
+                document.getElementById('resultado').className = 'alerta';
+            }
+
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+    </script>
+</body>
+</html>
