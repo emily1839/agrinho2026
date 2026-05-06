@@ -1,36 +1,19 @@
-// ============================
-// SCRIPT.JS - Agro Forte Sustentável
-// ============================
-
-// Array para armazenar as plantas
 let plantas = [];
+const limiteAgua = 5000;
+const limiteFertilizante = 1000;
 
-// Limites sustentáveis
-const limiteAgua = 5000; // L
-const limiteFertilizante = 1000; // kg
-
-function adicionarPlanta() {
-    // Pegar valores do formulário
+document.getElementById('btn-adicionar').addEventListener('click', () => {
     const nome = document.getElementById('nome-planta').value.trim();
     const quantidade = parseInt(document.getElementById('quantidade').value);
     const agua = parseInt(document.getElementById('agua').value);
     const fertilizante = parseInt(document.getElementById('fertilizante').value);
 
-    // Validação simples
     if (!nome || isNaN(quantidade) || isNaN(agua) || isNaN(fertilizante)) {
-        alert('Por favor, preencha todos os campos corretamente!');
+        alert('Preencha todos os campos corretamente!');
         return;
     }
 
-    // Adicionar planta ao array
-    plantas.push({
-        nome,
-        quantidade,
-        agua,
-        fertilizante
-    });
-
-    // Atualizar dashboard e tabela
+    plantas.push({ nome, quantidade, agua, fertilizante });
     atualizarDashboard();
     atualizarTabela();
 
@@ -39,50 +22,40 @@ function adicionarPlanta() {
     document.getElementById('quantidade').value = '';
     document.getElementById('agua').value = '';
     document.getElementById('fertilizante').value = '';
-}
+});
 
 function atualizarDashboard() {
     let totalAgua = 0;
     let totalFertilizante = 0;
 
-    plantas.forEach(planta => {
-        totalAgua += planta.agua * planta.quantidade;
-        totalFertilizante += planta.fertilizante * planta.quantidade;
+    plantas.forEach(p => {
+        totalAgua += p.quantidade * p.agua;
+        totalFertilizante += p.quantidade * p.fertilizante;
     });
 
     document.getElementById('agua-total').innerText = totalAgua + ' L';
     document.getElementById('fertilizante-total').innerText = totalFertilizante + ' kg';
 
-    // Alertas
     const alertasEl = document.getElementById('alertas');
-    alertasEl.innerHTML = '';
-    alertasEl.className = ''; // reset class
-
     let mensagens = [];
     if (totalAgua > limiteAgua) mensagens.push(`⚠️ Uso excessivo de água: ${totalAgua}L (limite ${limiteAgua}L)`);
     if (totalFertilizante > limiteFertilizante) mensagens.push(`⚠️ Uso excessivo de fertilizante: ${totalFertilizante}kg (limite ${limiteFertilizante}kg)`);
 
     if (mensagens.length === 0) {
         alertasEl.innerText = '✅ Plantação dentro dos limites sustentáveis!';
-        alertasEl.classList.add('sucesso');
+        alertasEl.className = 'sucesso';
     } else {
         alertasEl.innerHTML = mensagens.join('<br>');
-        alertasEl.classList.add('alerta');
+        alertasEl.className = 'alerta';
     }
 }
 
 function atualizarTabela() {
-    const corpoTabela = document.getElementById('corpo-tabela');
-    corpoTabela.innerHTML = ''; // Limpar tabela
-
-    plantas.forEach(planta => {
-        const linha = document.createElement('tr');
-        linha.innerHTML = `
-            <td>${planta.nome}</td>
-            <td>${planta.quantidade}</td>
-            <td>${planta.agua * planta.quantidade}</td>
-            <td>${planta.fertilizante * planta.quantidade}</td>
-        `;
-        corpoTabela.appendChild(linha);
+    const corpo = document.getElementById('corpo-tabela');
+    corpo.innerHTML = '';
+    plantas.forEach(p => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${p.nome}</td><td>${p.quantidade}</td><td>${p.agua * p.quantidade}</td><td>${p.fertilizante * p.quantidade}</td>`;
+        corpo.appendChild(tr);
     });
 }
