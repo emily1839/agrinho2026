@@ -1,70 +1,165 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agro Forte Sustentável</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AgroForte - Notícias do Campo</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f4f4;
+        }
+
+        header{
+            background:#2e7d32;
+            color:white;
+            padding:20px;
+            text-align:center;
+        }
+
+        nav{
+            background:#1b5e20;
+            padding:10px;
+            text-align:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin:0 15px;
+            font-weight:bold;
+        }
+
+        .banner{
+            background:url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854') center/cover;
+            height:300px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:white;
+            text-shadow:2px 2px 5px black;
+        }
+
+        .banner h2{
+            font-size:2.5rem;
+        }
+
+        main{
+            max-width:1200px;
+            margin:20px auto;
+            padding:20px;
+        }
+
+        .noticias{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            border-radius:10px;
+            overflow:hidden;
+            box-shadow:0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .card img{
+            width:100%;
+            height:200px;
+            object-fit:cover;
+        }
+
+        .card-content{
+            padding:15px;
+        }
+
+        .card h3{
+            color:#2e7d32;
+            margin-bottom:10px;
+        }
+
+        .card p{
+            color:#555;
+            line-height:1.5;
+        }
+
+        footer{
+            background:#2e7d32;
+            color:white;
+            text-align:center;
+            padding:15px;
+            margin-top:20px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Agro Forte: Futuro Sustentável</h1>
-        <p>Equilíbrio entre produção e meio ambiente</p>
-    </header>
 
-    <main>
-        <section class="section" id="controle-plantacao">
-            <h2>Controle de Plantação</h2>
+<header>
+    <h1>🌱 AgroForte</h1>
+    <p>Portal de Notícias do Campo e da Cidade</p>
+</header>
 
-            <input type="text" id="nome-planta" placeholder="Nome da Planta">
-            <input type="number" id="quantidade" placeholder="Quantidade">
-            <input type="number" id="agua" placeholder="Água necessária por unidade (L)">
-            <input type="number" id="fertilizante" placeholder="Fertilizante por unidade (kg)">
-            <button id="btn-adicionar">Adicionar Planta</button>
+<nav>
+    <a href="#">Início</a>
+    <a href="#">Notícias</a>
+    <a href="#">Agricultura</a>
+    <a href="#">Tecnologia</a>
+    <a href="#">Contato</a>
+</nav>
 
-            <div id="resultado"></div>
-        </section>
+<section class="banner">
+    <h2>Conectando o Campo ao Futuro</h2>
+</section>
 
-        <section class="section" id="dashboard">
-            <h2>Dashboard de Sustentabilidade</h2>
-            <div class="card">
-                <h3>Água Total</h3>
-                <p id="agua-total">0 L</p>
+<main>
+    <h2>Últimas Notícias</h2>
+    <br>
+
+    <section class="noticias">
+
+        <article class="card">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef" alt="Agricultura">
+            <div class="card-content">
+                <h3>Produção Sustentável Cresce no Paraná</h3>
+                <p>
+                    Agricultores investem em práticas sustentáveis para aumentar a produtividade e preservar o meio ambiente.
+                </p>
             </div>
-            <div class="card">
-                <h3>Fertilizante Total</h3>
-                <p id="fertilizante-total">0 kg</p>
-            </div>
-            <div class="card">
-                <h3>Alertas</h3>
-                <p id="alertas">Nenhum alerta</p>
-            </div>
-        </section>
+        </article>
 
-        <section class="section" id="tabela-plantas">
-            <h2>Resumo das Plantas</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Planta</th>
-                        <th>Quantidade</th>
-                        <th>Água (L)</th>
-                        <th>Fertilizante (kg)</th>
-                    </tr>
-                </thead>
-                <tbody id="corpo-tabela">
-                    <!-- Linhas adicionadas via JS -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+        <article class="card">
+            <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399" alt="Tecnologia Rural">
+            <div class="card-content">
+                <h3>Tecnologia Revoluciona o Campo</h3>
+                <p>
+                    Drones e sensores inteligentes ajudam produtores a monitorar plantações com maior eficiência.
+                </p>
+            </div>
+        </article>
 
-    <script src="script.js"></script>
+        <article class="card">
+            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6" alt="Agrinho">
+            <div class="card-content">
+                <h3>Agrinho Incentiva Educação Rural</h3>
+                <p>
+                    O programa Agrinho fortalece a relação entre educação, sustentabilidade e desenvolvimento rural.
+                </p>
+            </div>
+        </article>
+
+    </section>
+</main>
+
+<footer>
+    <p>© 2025 AgroForte - Projeto Agrinho</p>
+</footer>
+
 </body>
 </html>
