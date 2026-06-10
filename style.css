@@ -15,8 +15,8 @@ footer a {
 
 /* imagens Instagram e TikTok */
 .rodapé-imagem {
-    width:28px;   /* diminui o tamanho */
-    height:28px;
+    width:15px;   /* diminui o tamanho */
+    height:15px;
     object-fit:contain;
     transition:0.3s;
 }
